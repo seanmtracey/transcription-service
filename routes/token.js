@@ -1,21 +1,21 @@
 const debug = require('debug')('transcription:routes:token');
 const express = require('express');
 const router = express.Router();
-const S3O = require('s3o-middleware');
+const auth = require('../bin/lib/auth');
 
 const keys = require('../bin/lib/keys');
 
-router.use(S3O);
+router.use(auth);
 
 router.get('/generate', (req, res) => {
 	
-	keys.create({ owner : res.locals.s3o_username })
+	keys.create({ owner : res.locals.username })
 		.then(token => {
 			debug(token);
 
 			res.json({
 				token,
-				owner: res.locals.s3o_username
+				owner: res.locals.username
 			});
 
 		})

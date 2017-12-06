@@ -1,5 +1,5 @@
 {
-  "name": "transcription-service",
+  "name": "smt-transcription-service",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -22,7 +22,6 @@
     "node-fetch": "^1.6.3",
     "node-ffprobe": "git://github.com/seanmtracey/node-ffprobe.git",
     "rimraf": "^2.5.4",
-    "s3o-middleware": "^1.8.0",
     "serve-favicon": "~2.3.0",
     "shortid": "^2.2.6"
   },
