@@ -12,30 +12,26 @@
 </div>
 
 <div class="transcribeOptions">
-	
-	<div class="o-forms options">
 
-		<div class="outputFormatSelection">
-			<label class="o-forms__label">Transcription Output Type</label>
-			<input type="radio" name="radio" value="json" class="o-forms__radio" id="jsonOutput" checked></input>
-			<label for="jsonOutput" class="o-forms__label">JSON</label>
-			<input type="radio" name="radio" value="vtt" class="o-forms__radio" id="vttOutput"></input>
-			<label for="vttOutput" class="o-forms__label">VTT</label>
-			<input type="radio" name="radio" value="srt" class="o-forms__radio" id="srtOutput"></input>
-			<label for="srtOutput" class="o-forms__label">SRT</label>
-		</div>
-
-		<label for="languageSelection" class="o-forms__label">Language</label>
-		<small class="o-forms__additional-info">Select the language code to transcribe the video with</small>
-		<select id="languageSelection" class="o-forms__select">
-			{{#each languageOptions}}<option value="{{this}}">{{this}}</option>{{/each}}
-		</select>
-
-		<label for="o-forms-standard" class="o-forms__label">Service Token</label>
-		<small class="o-forms__additional-info"><a href="/token/generate" target="_blank">Get a token</a></small>
-		<input type="text" id="o-forms-standard" placeholder="3d3e5af97225421a8d1b3a88f34022cf" class="o-forms__text tokenInput"></input>
-
+	<div class="outputFormatSelection">
+		<label class="o-forms__label">Transcription Output Type</label>
+		<input type="radio" name="radio" value="json" class="o-forms__radio" id="jsonOutput" checked></input>
+		<label for="jsonOutput" class="o-forms__label">JSON</label>
+		<input type="radio" name="radio" value="vtt" class="o-forms__radio" id="vttOutput"></input>
+		<label for="vttOutput" class="o-forms__label">VTT</label>
+		<input type="radio" name="radio" value="srt" class="o-forms__radio" id="srtOutput"></input>
+		<label for="srtOutput" class="o-forms__label">SRT</label>
 	</div>
+
+	<label for="languageSelection" class="o-forms__label">Language</label>
+	<small class="o-forms__additional-info">Select the language code to transcribe the video with</small>
+	<select id="languageSelection" class="o-forms__select">
+		{{#each languageOptions}}<option value="{{this}}">{{this}}</option>{{/each}}
+	</select>
+
+	<label for="o-forms-standard" class="o-forms__label">Service Token</label>
+	<small class="o-forms__additional-info"><a href="/token/generate" target="_blank">Get a token</a></small>
+	<input type="text" id="o-forms-standard" spellcheck="false" placeholder="3d3e5af97225421a8d1b3a88f34022cf" class="o-forms__text tokenInput"></input>
 
 	<input type="submit" value="Transcribe" class="o-buttons o-buttons--standout o-buttons--big submitData" />
 
@@ -45,10 +41,10 @@
 	<h1>Transcription Result</h1>
 	<p class="info"></p>
 
-	<div class="o-buttons__group alternativeResults" data-hidden="true">
-		<button class="o-buttons" aria-selected="false" data-format="json">JSON</button>
-		<button class="o-buttons" data-format="vtt">VTT</button>
-		<button class="o-buttons" data-format="srt">SRT</button>
+	<div class="buttons__group alternativeResults" data-hidden="true">
+		<button aria-selected="false" data-format="json">JSON</button>
+		<button data-format="vtt">VTT</button>
+		<button data-format="srt">SRT</button>
 	</div>
 
 	<pre class="output"></pre>
@@ -146,6 +142,8 @@
 
 		function displayResults(data, outputType){
 
+			{{!-- resultsToggle.querySelector('[data-format="' + outputRadio.querySelector('input:checked').value + "\"]").dataset.selected = "true"; --}}
+			
 			resultsOutput.textContent = outputType === 'json' ? JSON.stringify(data) : data.output;
 			resultsHolder.dataset.hidden = "false";
 			
@@ -331,6 +329,12 @@
 
 			button.addEventListener('click', function(){
 				
+				Array.from(resultsToggle.querySelectorAll('button')).forEach(function(btn){
+					btn.dataset.selected = "false";
+				});
+
+				this.dataset.selected = "true";
+
 				if(currentJobID !== undefined && jobInProgress === false){
 
 					const selectedOutput = this.dataset.format

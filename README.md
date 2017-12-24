@@ -1,4 +1,4 @@
-# FT Labs Transcription Service.
+# SMT Transcription Service.
 Time-based transcriptions of media content, powered by Google's Speech APIs
 
 This service currently lives on [Heroku](https://ftlabs-transcription.herokuapp.com).

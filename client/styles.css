@@ -15,11 +15,47 @@ html{
 	width: 100%;
 	height: 100%;
 	background-color: white;
-	font-family: MetricWeb, sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
 }
 
 html * {
 	box-sizing: border-box;
+}
+
+p, a, input{
+    margin-bottom: 1em;
+    line-height: 1.5em;
+}
+
+input[type="text"], select{
+    border: 1px solid black;
+    padding: 1em;
+    width: 100%;
+    background: white;
+}
+
+label{
+    margin-top: 1em;
+}
+
+small{
+    margin-bottom: 1em;
+}
+
+header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: black;
+}
+
+header a{
+    padding: 0;
+    margin: 0.5em;
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
 }
 
 main{
@@ -33,6 +69,28 @@ main{
     display: flex;
     flex-direction: column;
 	align-items: center;
+}
+
+.buttons__group button{
+    border: 1px solid black;
+    background: white;
+    padding: 0.5em 1em;
+    outline: none;
+    cursor: pointer;
+}
+
+.buttons__group button:first-of-type{
+    border-radius: 5px 0 0 5px;
+}
+
+.buttons__group button:last-of-type{
+    border-radius: 0 5px 5px 0;
+}
+
+.buttons__group button[data-selected="true"]{
+    font-weight: 600;
+    color: white;
+    background: black;
 }
 
 .mediaDrop{
@@ -66,7 +124,7 @@ body[data-dragging="true"] .mediaDrop{
     border-style: dashed;
 }
 
-body[data-working="true"] .mediaDrop, body[data-complete="true"] .mediaDrop, body[data-working="true"] .transcribeOptions .options, body[data-complete="true"] .transcribeOptions .options{
+body[data-working="true"] .mediaDrop, body[data-complete="true"] .mediaDrop, body[data-working="true"] .transcribeOptions, body[data-complete="true"] .transcribeOptions{
     display: none;
 }
 
